@@ -1,0 +1,21 @@
+name: Testing the push action
+
+on:
+  schedule:
+    - cron: '10 4 * * *'
+    - cron: '50 16 * * *'
+  push:
+    paths:
+      - .github/workflows/test-push.yml
+
+jobs:
+  commitAndPush:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Make changes
+        run: date -u +"%Y-%m-%d %H:%M:%S"
+
